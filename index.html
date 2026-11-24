@@ -4,13 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChemAR-AI | Hệ sinh thái Hóa học</title>
-    <link rel="stylesheet" href="css/main.css">
+    <!-- Nhúng thư viện Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Chào mừng đến với ChemAR-AI</h1>
-    <div id="chatbot-container"></div>
+<body class="bg-slate-900 text-white font-sans">
+    <div class="container mx-auto px-4 py-10">
+        <!-- Tiêu đề chính -->
+        <h1 class="text-4xl font-bold text-teal-400 text-center mb-6">ChemAR-AI</h1>
+        <p class="text-center text-gray-300 text-lg mb-10">Hệ sinh thái Học tập Hóa học Đa giác quan tích hợp Trí tuệ Nhân tạo</p>
+        
+        <!-- Bố cục 2 cột -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Khu vực WebAR -->
+            <div class="bg-slate-800 p-6 rounded-lg shadow-lg border border-slate-700">
+                <h2 class="text-2xl font-semibold text-blue-400 mb-4">Phòng thực hành WebAR</h2>
+                <p class="text-gray-400 mb-4">Quét mã QR để xem mô hình phân tử 3D lơ lửng trên mặt bàn.</p>
+                <div id="ar-viewer-container" class="h-64 bg-slate-700 rounded flex items-center justify-center border-2 border-dashed border-slate-500">
+                    <span class="text-slate-400">Khu vực hiển thị 3D sẽ nằm ở đây</span>
+                </div>
+            </div>
 
-    <!-- Nhúng file nhạc trưởng với type="module" -->
+            <!-- Khu vực Chatbot AI -->
+            <div class="bg-slate-800 p-6 rounded-lg shadow-lg border border-slate-700">
+                <h2 class="text-2xl font-semibold text-green-400 mb-4">Gia sư AI (CrewAI)</h2>
+                <p class="text-gray-400 mb-4">Trợ lý ảo đa luồng hỗ trợ giải đáp lý thuyết và bài tập.</p>
+                <div id="chatbot-container" class="h-64 bg-slate-700 rounded flex items-center justify-center border-2 border-dashed border-slate-500">
+                    <span class="text-slate-400">Khu vực Chatbot sẽ nằm ở đây</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- File nhạc trưởng JS -->
     <script type="module" src="js/main.js"></script>
 </body>
 </html>
