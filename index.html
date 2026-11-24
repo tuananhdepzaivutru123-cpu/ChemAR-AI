@@ -3,37 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChemAR-AI | Hệ sinh thái Hóa học</title>
-    <!-- Nhúng thư viện Tailwind CSS -->
+    <title>ChemAR-AI | Học mỗi ngày, tiến bộ từng câu</title>
+    <!-- Tích hợp Tailwind CSS và Font chữ Inter -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hover-card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+    </style>
 </head>
-<body class="bg-slate-900 text-white font-sans">
-    <div class="container mx-auto px-4 py-10">
-        <!-- Tiêu đề chính -->
-        <h1 class="text-4xl font-bold text-teal-400 text-center mb-6">ChemAR-AI</h1>
-        <p class="text-center text-gray-300 text-lg mb-10">Hệ sinh thái Học tập Hóa học Đa giác quan tích hợp Trí tuệ Nhân tạo</p>
-        
-        <!-- Bố cục 2 cột -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Khu vực WebAR -->
-            <div class="bg-slate-800 p-6 rounded-lg shadow-lg border border-slate-700">
-                <h2 class="text-2xl font-semibold text-blue-400 mb-4">Phòng thực hành WebAR</h2>
-                <p class="text-gray-400 mb-4">Quét mã QR để xem mô hình phân tử 3D lơ lửng trên mặt bàn.</p>
-                <div id="ar-viewer-container" class="h-64 bg-slate-700 rounded flex items-center justify-center border-2 border-dashed border-slate-500">
-                    <span class="text-slate-400">Khu vực hiển thị 3D sẽ nằm ở đây</span>
-                </div>
-            </div>
+<body class="bg-gray-50 text-gray-800">
 
-            <!-- Khu vực Chatbot AI -->
-            <div class="bg-slate-800 p-6 rounded-lg shadow-lg border border-slate-700">
-                <h2 class="text-2xl font-semibold text-green-400 mb-4">Gia sư AI (CrewAI)</h2>
-                <p class="text-gray-400 mb-4">Trợ lý ảo đa luồng hỗ trợ giải đáp lý thuyết và bài tập.</p>
-                <div id="chatbot-container" class="h-64 bg-slate-700 rounded flex items-center justify-center border-2 border-dashed border-slate-500">
-                    <span class="text-slate-400">Khu vực Chatbot sẽ nằm ở đây</span>
+    <!-- Thanh Điều Hướng (Navbar) -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">⚛️</span>
+                    <span class="font-bold text-xl tracking-tight text-blue-600">ChemAR-AI</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Học liệu Hóa 10</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Gia sư AI</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Phòng WebAR</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Kho đề</a>
+                </div>
+                <div>
+                    <button class="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-semibold hover:bg-blue-200">Đăng nhập</button>
                 </div>
             </div>
         </div>
-    </div>
+    </nav>
+
+    <!-- Khu vực Hero (Giới thiệu chính) -->
+    <header class="max-w-5xl mx-auto px-4 py-20 text-center">
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-6">
+            Hóa học vi mô.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-400">Trải nghiệm khổng lồ.</span>
+        </h1>
+        <p class="text-lg text-gray-500 mb-10 max-w-2xl mx-auto">
+            45 mô phỏng 3D từ sách giáo khoa Hóa học 10. Học bằng cả mắt và tay với WebAR. Có Gia sư AI chấm điểm và giải đáp tức thì. Không cần cài đặt.
+        </p>
+        <div class="flex justify-center gap-4 flex-col md:flex-row">
+            <button class="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-700 shadow-lg shadow-blue-200 transition">Vào học ngay</button>
+            <button class="bg-white text-gray-700 border border-gray-300 px-8 py-3 rounded-xl font-semibold hover:bg-gray-50 transition shadow-sm flex items-center justify-center gap-2">
+                <span>📷</span> Quét mã AR
+            </button>
+        </div>
+    </header>
+
+    <!-- Khu vực Tính năng (NeoEdu Style Cards) -->
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-8">Tính năng nổi bật</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Card 1: WebAR -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover-card">
+                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">🧊</div>
+                <h3 class="text-xl font-bold mb-3">Mô phỏng WebAR</h3>
+                <p class="text-gray-500 text-sm">Hiển thị mạng tinh thể NaCl, cấu trúc phân tử ngay trên mặt bàn học của bạn chỉ bằng camera điện thoại.</p>
+            </div>
+
+            <!-- Card 2: Multi-Agent AI -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover-card">
+                <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center text-2xl mb-6">🤖</div>
+                <h3 class="text-xl font-bold mb-3">Gia sư AI Đa luồng</h3>
+                <p class="text-gray-500 text-sm">Một AI đóng vai giáo viên giảng bài, một AI tạo đề kiểm tra 15 phút, tự động bắt lỗi sai tư duy hóa học.</p>
+            </div>
+
+            <!-- Card 3: Form thi 2025 -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover-card">
+                <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-2xl mb-6">📝</div>
+                <h3 class="text-xl font-bold mb-3">Kho đề chuẩn 2025</h3>
+                <p class="text-gray-500 text-sm">Chấm điểm tức thì định dạng Đúng/Sai 4 ý và Trả lời ngắn, sát cấu trúc thi Tốt nghiệp THPT mới nhất.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Khu vực Học liệu Hóa 10 -->
+    <section class="bg-white py-16 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8">Học liệu Hóa học 10 (GDPT 2018)</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                
+                <div class="group cursor-pointer">
+                    <div class="bg-gray-50 rounded-xl h-32 flex items-center justify-center border border-gray-200 group-hover:border-blue-400 transition mb-3 text-4xl">⚛️</div>
+                    <h4 class="font-semibold text-gray-800">Chương 1 & 2</h4>
+                    <p class="text-xs text-gray-500">Cấu tạo nguyên tử & Bảng tuần hoàn</p>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="bg-gray-50 rounded-xl h-32 flex items-center justify-center border border-gray-200 group-hover:border-blue-400 transition mb-3 text-4xl">🔗</div>
+                    <h4 class="font-semibold text-gray-800">Chương 3</h4>
+                    <p class="text-xs text-gray-500">Liên kết hóa học (Octet, Ion, Cộng hóa trị)</p>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="bg-gray-50 rounded-xl h-32 flex items-center justify-center border border-gray-200 group-hover:border-blue-400 transition mb-3 text-4xl">⚡</div>
+                    <h4 class="font-semibold text-gray-800">Chương 4 & 5</h4>
+                    <p class="text-xs text-gray-500">Oxi hóa - khử & Năng lượng hóa học</p>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="bg-gray-50 rounded-xl h-32 flex items-center justify-center border border-gray-200 group-hover:border-blue-400 transition mb-3 text-4xl">🧪</div>
+                    <h4 class="font-semibold text-gray-800">Chương 6 & 7</h4>
+                    <p class="text-xs text-gray-500">Tốc độ phản ứng & Nhóm Halogen</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     <!-- File nhạc trưởng JS -->
     <script type="module" src="js/main.js"></script>
